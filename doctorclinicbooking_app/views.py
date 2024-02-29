@@ -57,3 +57,8 @@ def Doctor_registration(request):
 def Dr_home(request):
     return render(request,"DOCTOR/drindex.html")
 
+@login_required(login_url='/')
+def doc_verification(request):
+    ob=Doctor.objects.all()
+    return render(request,"ADMIN/dr_verification.html",{'val':ob})
+
