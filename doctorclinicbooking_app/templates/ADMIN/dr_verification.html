@@ -1,0 +1,77 @@
+{% extends 'ADMIN/adminindex.html' %}
+{% block body %}
+
+    <head>
+    <style>
+        #table-scroll {
+  height:auto;
+  overflow:auto;
+  margin-top:20px;
+}
+    </style>
+    </head>
+<body>
+<form id="form1" name="form1" method="post" action="/doc_verificationsearch#about">
+ <div id="table-scroll">
+  <table width="511" border="1"  class="table table-dark">
+    <tr>
+      <td colspan="4">Specialization
+        <input name="name" type="text" class="btn btn-primary">
+       </td>
+      <td colspan="6"><label>
+       <button type="submit" class="btn btn-primary">
+  <span class="glyphicon glyphicon-search"></span> Search
+</button>
+      </label></td>
+    </tr>
+
+
+
+
+    <tr>
+      <td width="25">Sl.no</td>
+      <td width="32">Name</td>
+      <td width="79">Specialization</td>
+      <td width="71">Qualification</td>
+      <td width="65">Experience</td>
+      <td width="65">Previously worked hospital</td>
+      <td width="31">Email</td>
+      <td width="37">Phone</td>
+      <td width="41">Gender</td>
+      <td width="33">DOB</td>
+      <td width="33">&nbsp;</td>
+    </tr>
+
+
+     {% for i in val %}
+
+    <tr>
+      <td height="92">&nbsp;{{ forloop.counter }}</td>
+      <td>&nbsp;{{ i.Firstname }}{{ i.Lastname }}</td>
+      <td>{{ i.Department }}</td>
+      <td>{{i.Qualification}}</td>
+      <td>{{ i.Exprience }}</td>
+      <td>{{ i.Pwh }}</td>
+      <td>{{i.Email }}</td>
+      <td>{{i.Phoneno}}</td>
+      <td>{{ i.Gender }}</td>
+      <td>{{ i.Dob }}</td>
+      <td>
+          {% if i.LOGIN.type == 'pending' %}
+          <p><a href="doc_acceot/{{i.LOGIN.id}}" class="btn btn-success">accept</a></p>
+      <p><a href="doc_reject/{{ i.LOGIN.id }}" class="btn btn-danger">reject</a></p>
+      {% elif i.LOGIN.type == 'Doctor' %}
+      Accepted
+      {% else %}
+      Rejected
+      {% endif %}</td>
+    </tr>
+
+      {% endfor %}
+
+
+  </table>
+ </div>
+</form>
+</body>
+{% endblock %}

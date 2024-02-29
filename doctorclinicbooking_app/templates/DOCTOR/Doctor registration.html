@@ -1,0 +1,95 @@
+{% extends 'regindex.html' %}
+{% block body %}
+<body>
+<form id="form1" name="form1" method="post" action="/docregcode" enctype="multipart/form-data">
+  <table width="200" border="1">
+    <tr>
+      <td>First name </td>
+      <td><label>
+        <input type="text" name="textfield" />
+      </label></td>
+    </tr>
+    <tr>
+      <td>Last name </td>
+      <td><label>
+        <input type="text" name="textfield2" />
+      </label></td>
+    </tr>
+    <tr>
+      <td>Gender</td>
+      <td><label>
+        <input name="radiobutton" type="radio" value="Male" />
+      Male
+      <input name="radiobutton" type="radio" value="Female" />
+      Female</label></td>
+    </tr>
+    <tr>
+      <td>Department</td>
+      <td><label>
+        <input type="text" name="textfield3" />
+      </label></td>
+    </tr>
+    <tr>
+      <td>Qualification</td>
+      <td><label>
+        <input type="text" name="textfield4" />
+      </label></td>
+    </tr>
+    <tr>
+      <td>Experiance</td>
+      <td><label>
+        <input type="text" name="textfield5" />
+      </label></td>
+    </tr>
+    <tr>
+      <td>Email</td>
+      <td><label>
+        <input type="text" name="textfield6" />
+      </label></td>
+    </tr>
+    <tr>
+      <td>Phone no </td>
+      <td><label>
+        <input type="text" name="textfield7" />
+      </label></td>
+    </tr>
+
+    <tr>
+      <td>DOB</td>
+      <td><label>
+        <input type="date" name="textfield8" />
+      </label></td>
+    </tr>
+      <tr>
+      <td>ID</td>
+      <td><label>
+        <input type="file" name="idproof" />
+      </label></td>
+    </tr>
+         <tr>
+      <td>Photo</td>
+      <td><label>
+        <input type="file" name="photo" />
+      </label></td>
+    </tr>
+    <tr>
+      <td>user name </td>
+      <td><label>
+        <input type="text" name="textfield9" />
+      </label></td>
+    </tr>
+    <tr>
+      <td>password</td>
+      <td><label>
+        <input type="text" name="textfield10" />
+      </label></td>
+    </tr>
+    <tr>
+      <td colspan="2"><label>
+        <input type="submit" name="registration" value="registration" />
+      </label></td>
+    </tr>
+  </table>
+</form>
+</body>
+{% endblock %}
