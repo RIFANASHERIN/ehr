@@ -62,3 +62,9 @@ def doc_verification(request):
     ob=Doctor.objects.all()
     return render(request,"ADMIN/dr_verification.html",{'val':ob})
 
+@login_required(login_url='/')
+def doc_verificationsearch(request):
+    dep=request.POST['name']
+    ob=Doctor.objects.filter(Department__icontains=dep)
+    return render(request,"ADMIN/dr_verification.html",{'val':ob})
+
