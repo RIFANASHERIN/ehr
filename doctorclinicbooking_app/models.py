@@ -32,3 +32,10 @@ class Doctor(models.Model):
     Dob = models.DateField()
     idproof=models.FileField()
     photo=models.FileField()
+
+
+class Awareness(models.Model):
+    Awarenes=models.CharField(max_length=1000)
+    Details=models.CharField(max_length=1000)
+    video=models.FileField()
+    Date = models.DateField()
