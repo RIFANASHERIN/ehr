@@ -1,0 +1,33 @@
+{% extends 'ADMIN/adminindex.html' %}
+{% block body %}
+
+<body>
+<form id="form1" name="form1" method="post" action="/add_awarenesscode" enctype="multipart/form-data">
+  <table width="237" border="1" class="table table-dark">
+    <tr>
+      <td width="164">Awarness</td>
+      <td width="57"><label>
+        <input type="text" name="textfield" style="color: #0a3622" required />
+      </label></td>
+    </tr>
+    <tr>
+      <td>Details</td>
+      <td><label>
+        <input type="text" name="textfield2"  style="color: #0a3622"  required/>
+      </label></td>
+    </tr>
+        <tr>
+      <td>video</td>
+      <td><label>
+        <input type="file" name="file"  class="form-control" style="color: #0a3622"  required/>
+      </label></td>
+    </tr>
+     <tr>
+      <td colspan="2"> <label>
+        <input type="submit" name="Submit" value="add" class="btn btn-success"/>
+      </label></td>
+    </tr>
+  </table>
+</form>
+</body>
+{% endblock %}

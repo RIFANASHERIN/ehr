@@ -48,6 +48,34 @@ def logincode(request):
 def adminindex(request):
     return render(request,"ADMIN/adminindex.html")
 
+@login_required(login_url='/')
+def add_awareness(request):
+    return render(request,"ADMIN/Add_awareness.html")
+
+@login_required(login_url='/')
+def add_awarenesscode(request):
+    aw=request.POST['textfield']
+    det=request.POST['textfield2']
+    ved=request.FILES['file']
+    fs=FileSystemStorage()
+    fn=fs.save(ved.name,ved)
+    ob=Awareness()
+    ob.video=fn
+    ob.Awarenes=aw
+    ob.Details=det
+    ob.Date=datetime.datetime.today()
+    ob.save()
+    return HttpResponse('''<script>alert("Awareness Added"); window.location="/manage_awareness#about"</script>''')
+
+
+@login_required(login_url='/')
+def delete_awareness(request,id):
+    ob=Awareness.objects.get(id=id)
+    ob.delete()
+    return HttpResponse('''<script>alert("Awareness Deleted"); window.location="/manage_awareness#about"</script>''')
+
+
+
 def regindex (request):
     return render(request,"regindex.html")
 
