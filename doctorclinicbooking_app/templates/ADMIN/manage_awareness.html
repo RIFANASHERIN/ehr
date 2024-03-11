@@ -1,0 +1,29 @@
+{% extends 'ADMIN/adminindex.html' %}
+{% block body %}
+
+<body>
+<form id="form1" name="form1" method="post" action="">
+  <table width="200" border="1"  class="table table-dark">
+    <tr>
+      <td>Awareness</td>
+      <td>Details</td>
+      <td>&nbsp;Date</td>
+      <td></td>
+    </tr>
+      {% for i in val %}
+    <tr>
+      <td>&nbsp;{{i.Awarenes}}</td>
+      <td>&nbsp;{{i.Details}}</td>
+      <td>{{i.Date}}</td>
+        <td>
+      <p><a href="delete_awareness/{{ i.id }}" class="btn btn-danger">delete</a></p></td>
+    </tr>
+      {% endfor %}
+    
+    <tr>
+      <td colspan="4" align="center"><a href="add_awareness#about" class="btn btn-success">ADD NEW </a></td>
+    </tr>
+  </table>
+</form>
+</body>
+{% endblock %}
