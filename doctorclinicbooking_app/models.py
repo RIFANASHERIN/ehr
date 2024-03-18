@@ -33,6 +33,13 @@ class Doctor(models.Model):
     idproof=models.FileField()
     photo=models.FileField()
 
+class Chat(models.Model):
+    Fromid=models.ForeignKey(Login, on_delete=models.CASCADE,related_name="fid")
+    Toid=models.ForeignKey(Login, on_delete=models.CASCADE,related_name="tid")
+    Message=models.CharField(max_length=500)
+    Date = models.DateField()
+    Time=models.TimeField()
+
 
 class Awareness(models.Model):
     Awarenes=models.CharField(max_length=1000)
