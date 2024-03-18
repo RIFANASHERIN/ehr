@@ -96,3 +96,68 @@ def doc_verificationsearch(request):
     ob=Doctor.objects.filter(Department__icontains=dep)
     return render(request,"ADMIN/dr_verification.html",{'val':ob})
 
+def chatwithdr(request):
+    ob = Doctor.objects.all()
+    return render(request,"ADMIN/chat with dr.html",{'val':ob})
+
+
+
+
+def chatview(request):
+    ob = Doctor.objects.all()
+    d=[]
+    for i in ob:
+        r={"name":i.Firstname + i.Lastname,'photo':i.photo.url,'email':i.Email,'loginid':i.LOGIN.id}
+        d.append(r)
+    return JsonResponse(d, safe=False)
+
+
+
+
+def coun_insert_chat(request,msg,id):
+    print("===",msg,id)
+    ob=Chat()
+    ob.Fromid=Login.objects.get(id=request.session['lid'])
+    ob.Toid=Login.objects.get(id=id)
+    ob.Message=msg
+    ob.Date=datetime.datetime.now().strftime("%Y-%m-%d")
+    ob.Time=datetime.datetime.now()
+    ob.save()
+
+    return JsonResponse({"task":"ok"})
+    # refresh messages chatlist
+
+
+
+def coun_msg(request,id):
+
+    ob1=Chat.objects.filter(Fromid__id=id,Toid__id=request.session['lid'])
+    ob2=Chat.objects.filter(Fromid__id=request.session['lid'],Toid__id=id)
+    combined_chat = ob1.union(ob2)
+    combined_chat=combined_chat.order_by('id')
+    res=[]
+    for i in combined_chat:
+        res.append({"from_id":i.Fromid.id,"msg":i.Message,"date":str(i.Date)+" "+str(i.Time).split(".")[0],"chat_id":i.id})
+
+    obu=Doctor.objects.get(LOGIN__id=id)
+
+
+    return JsonResponse({"data":res,"name":obu.Firstname + obu.Lastname,"photo":obu.photo.url,"user_lid":obu.LOGIN.id})
+
+
+def coun_msg_user(request,id):
+
+    ob1=Chat.objects.filter(Fromid__id=id,Toid__id=request.session['lid'])
+    ob2=Chat.objects.filter(Fromid__id=request.session['lid'],Toid__id=id)
+    combined_chat = ob1.union(ob2)
+    combined_chat=combined_chat.order_by('id')
+    res=[]
+    for i in combined_chat:
+        res.append({"from_id":i.Fromid.id,"msg":i.Message,"date":str(i.Date)+" "+str(i.Time).split(".")[0],"chat_id":i.id})
+
+    obu=User.objects.get(LOGIN__id=id)
+
+
+    return JsonResponse({"data":res,"name":obu.Firstname +" "+ obu.Lastname,"photo":obu.photo.url,"user_lid":obu.LOGIN.id})
+
+
